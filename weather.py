@@ -2,7 +2,8 @@ import requests
 import telebot
 from tokens import url, api_weather, api_telegram, city, admin
 bot = telebot.TeleBot(api_telegram)
-from colorama import Fore
+import logging
+import time
 
 
 def weather(message):
@@ -52,9 +53,35 @@ def weather(message):
                          "Видимость: " + str(weather['visibility']) + "\n" +
                          "Описание: " + str(weather['weather'][0]["description"]) + "\n" + temp + "\n" + wind + '\n')
     except:
-        # bot.send_message(message.chat.id, 'вы ввели город, которого нет в базе данных \n')
-        # bot.send_message(message.chat.id, 'рестарт... \n')
-        # bot.send_message(message.chat.id, 'введите название города')
-        bot.send_message(message.chat.id,
-                         f'похоже что-то не так с api погоды\n напишите пожалуйста нашему админу{admin}')
-        print(Fore.RED + 'Ошибка отправки погоды')
+        # исполняется в случае неправильного отображения погоды
+        bot.send_message(message.chat.id, f'похоже что-то не так с api погоды\n напишите пожалуйста нашему админу{admin}')
+        logging.error(f"Api погоды не работает корректно!, {time.ctime()}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

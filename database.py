@@ -1,13 +1,13 @@
 # импортируем необходимые библиотеки
 import telebot
 from tokens import api_telegram
-bot = telebot.TeleBot(api_telegram)
 import sqlite3
+bot = telebot.TeleBot(api_telegram)
+
 
 def delete(message):
     connect = sqlite3.connect('users.db')
     cursor = connect.cursor()
-
     people_id = message.chat.id
     cursor.execute(f'DELETE FROM login_id WHERE id={people_id}')
     connect.commit()
@@ -21,7 +21,6 @@ def upload(message):
             id INTEGER
         )""")
     connect.commit()
-
     people_id = message.chat.id
     cursor.execute(f'SELECT id FROM login_id WHERE id = {people_id}')
     data = cursor.fetchone()

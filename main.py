@@ -17,18 +17,6 @@ def welcome(message):
                      'нажмите /help чтобы узнать команды, которые поддерживает бот')
 
 
-@bot.message_handler(commands=['unsubscribe'])
-def unsubscribe(message):
-    # смотрите в database.py
-    delete(message)
-
-
-@bot.message_handler(commands=['subscribe'])
-def subscribe(message):
-    # смотрите в database.py
-    upload(message)
-
-
 @bot.message_handler(commands=['help'])
 def welcome(message):
     bot.send_message(message.chat.id,
@@ -42,6 +30,17 @@ def welcome(message):
                      '\n/unsubscribe - отписаться от рассылки новостей'
                      )
 
+
+@bot.message_handler(commands=['unsubscribe'])
+def unsubscribe(message):
+    # смотрите в database.py
+    delete(message)
+
+
+@bot.message_handler(commands=['subscribe'])
+def subscribe(message):
+    # смотрите в database.py
+    upload(message)
 
 @bot.message_handler(commands=['weather'])
 def weather_main(message):
